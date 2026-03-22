@@ -1,6 +1,6 @@
 {
   "protocol": {
-    "version": "1.1",
+    "version": "1.1.1",
     "treasury": "0x598bF63F5449876efafa7b36b77Deb2070621C0E",
     "fee_bps": 100,
     "min_payment_amount": 1000
@@ -9,7 +9,11 @@
     "base": {
       "name": "Base Mainnet",
       "chainId": 8453,
-      "rpcUrl": "https://mainnet.base.org",
+      "rpcUrls": [
+        "https://mainnet.base.org",
+        "https://base.meowrpc.com",
+        "https://1rpc.io/base"
+      ],
       "explorer": "https://basescan.org",
       "router": "0x92e20164FC457a2aC35f53D06268168e6352b200",
       "tokens": {
@@ -19,7 +23,10 @@
     "baseSepolia": {
       "name": "Base Sepolia (Sandbox)",
       "chainId": 84532,
-      "rpcUrl": "https://sepolia.base.org",
+      "rpcUrls": [
+        "https://sepolia.base.org",
+        "https://base-sepolia-rpc.publicnode.com"
+      ],
       "explorer": "https://sepolia.basescan.org",
       "router": "0xB587Bc36aaCf65962eCd6Ba59e2DA76f2f575408",
       "tokens": {
