@@ -5,6 +5,20 @@
     "fee_bps": 100,
     "min_payment_amount": 1000
   },
+  "error_codes": {
+    "rpc_error": "Failed to connect to any provided RPC nodes.",
+    "insufficient_funds": "Wallet lacks USDC or ETH for gas.",
+    "amount_too_low": "Payment amount is below the protocol minimum (1000).",
+    "token_not_accepted": "The provided token address is not in the whitelist.",
+    "transaction_failed": "On-chain transaction reverted or failed.",
+    "duplicate_transaction": "This transaction hash has already been consumed.",
+    "invalid_receipt": "Invalid receipt",
+    "internal_error": "An unexpected error occurred.",
+    "transaction_not_found": "Transaction not found on-chain.",
+    "wrong_contract": "Payment event was not emitted by the official PayNode contract.",
+    "order_mismatch": "OrderId in receipt does not match requested ID.",
+    "missing_receipt": "Please pay to PayNode contract and provide 'x-paynode-receipt' header."
+  },
   "networks": {
     "base": {
       "name": "Base Mainnet",
