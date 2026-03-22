@@ -1,0 +1,21 @@
+# PayNode Meta Repository Ignore Rules
+# We only track meta-assets and global configs
+
+# Ignore everything
+*
+
+# Allow specific meta files
+!public/
+!scripts/
+!CHANGELOG.md 
+!GEMINI.md 
+!paynode-config.json 
+!README.md 
+!SDK_SPECIFICATION.md
+!.gitignore
+
+# Ignore sub-repo contents (handled by their own git)
+apps/
+packages/
+node_modules/
+.env
