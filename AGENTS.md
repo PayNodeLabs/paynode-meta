@@ -6,36 +6,36 @@
 
 ## OVERVIEW
 
-PayNode is a stateless, non-custodial M2M payment gateway implementing the x402 protocol on Base L2 (Ethereum). AI Agents autonomously detect HTTP 402 responses, execute USDC transactions via EIP-2612 Permits, and retry requests. This monorepo is the SSoT (Single Source of Truth) for protocol constants, SDKs, smart contracts, and web properties.
+PayNode is a stateless, non-custodial M2M payment gateway implementing the x402 protocol on Base L2 (Ethereum). AI Agents autonomously detect HTTP 402 responses, execute USDC transactions via EIP-2612 Permits, and retry requests. This repository is the SSoT (Single Source of Truth) for shared protocol constants, specs, and assets, and is used together with sibling PayNode repositories in a local aggregate workspace.
 
 **Core Stack:** TypeScript (Ethers.js), Python (Web3.py), Solidity (Foundry), Next.js 15, Tailwind CSS
 
 ## STRUCTURE
 
-```
-paynode/
-├── paynode-config.json     # SSoT — contract addresses, chain IDs, error codes
-├── SDK_SPECIFICATION.md    # "Engineering Constitution" — protocol v1.4 spec
-├── scripts/
-│   └── sync-config.py      # Propagates config to all sub-packages
+```text
+paynode-workspace/
+├── meta/
+│   ├── paynode-config.json     # SSoT — contract addresses, chain IDs, error codes
+│   ├── SDK_SPECIFICATION.md    # "Engineering Constitution" — protocol spec
+│   ├── scripts/
+│   │   └── sync-config.py      # Propagates config to sibling repositories
+│   └── public/                 # Brand assets (logos, OG images)
 ├── packages/
-│   ├── sdk-js/             # TypeScript SDK (Ethers.js, strict TS, Jest)
-│   ├── sdk-python/         # Python SDK (Web3.py, PEP 8, Pytest)
-│   ├── contracts/          # Solidity — PayNodeRouter, MockUSDC (Foundry)
-│   └── paynode-ai-skills/  # Atomic AI scripts for payment integration
-├── apps/
-│   ├── paynode-web/        # Next.js 15 landing page + merchant dashboard
-│   └── paynode-docs/       # Nextra 3 documentation site
-├── live-testing/           # Real network test scripts (JS/Python)
-└── public/                 # Brand assets (logos, OG images)
+│   ├── sdk-js/                 # TypeScript SDK (Ethers.js, strict TS, Jest)
+│   ├── sdk-python/             # Python SDK (Web3.py, PEP 8, Pytest)
+│   ├── contracts/              # Solidity — PayNodeRouter, MockUSDC (Foundry)
+│   └── paynode-ai-skills/      # Atomic AI scripts for payment integration
+└── apps/
+    ├── paynode-web/            # Next.js 15 landing page + merchant dashboard
+    └── paynode-docs/           # Nextra 3 documentation site
 ```
 
 ## WHERE TO LOOK
 
 | Task | Location | Notes |
 |------|----------|-------|
-| Contract addresses, chain IDs | `paynode-config.json` | Edit here, then run sync |
-| SDK behavior spec | `SDK_SPECIFICATION.md` | Defines naming, headers, error codes |
+| Contract addresses, chain IDs | `meta/paynode-config.json` | Edit here, then run sync |
+| SDK behavior spec | `meta/SDK_SPECIFICATION.md` | Defines naming, headers, error codes |
 | JS SDK source | `packages/sdk-js/src/` | `client.ts` (agent), `middleware/` (merchant) |
 | Python SDK source | `packages/sdk-python/paynode_sdk/` | `client.py` (agent), `middleware.py` (merchant) |
 | Smart contracts | `packages/contracts/src/` | `PayNodeRouter.sol`, `MockUSDC.sol` |
@@ -43,7 +43,7 @@ paynode/
 | API endpoints | `apps/paynode-web/app/api/` | POM backend at `app/api/pom/` |
 | Documentation | `apps/paynode-docs/pages/` | Nextra markdown pages |
 | AI agent skills | `packages/paynode-ai-skills/` | Each skill has `SKILL.md` + `scripts/` |
-| Config sync engine | `scripts/sync-config.py` | Run after editing `paynode-config.json` |
+| Config sync engine | `meta/scripts/sync-config.py` | Run after editing `meta/paynode-config.json` |
 
 ## CODE MAP
 
@@ -68,7 +68,7 @@ paynode/
 - **USDC Decimals:** Always 6. Use `ethers.parseUnits(amount, 6)` in JS.
 - **Gas Strategy:** Default `GasPrice * 1.2`.
 - **Idempotency:** Verifiers MUST track `TxHash` to prevent replay attacks.
-- **Config Sync:** After editing `paynode-config.json`, run `python3 scripts/sync-config.py`.
+- **Config Sync:** After editing `meta/paynode-config.json`, run `python3 meta/scripts/sync-config.py`.
 
 ## ANTI-PATTERNS (THIS PROJECT)
 
@@ -84,14 +84,14 @@ paynode/
 
 - **AGENTS.md in every package:** Each sub-project has AI-specific developer instructions (treated as system prompts for LLMs).
 - **SKILL.md format:** AI skills use a standardized markdown format defining capabilities.
-- **SSoT pattern:** `paynode-config.json` is the single source for protocol constants; sub-packages are auto-generated targets.
+- **SSoT pattern:** `meta/paynode-config.json` is the single source for protocol constants; sibling repositories are auto-generated targets.
 - **Relaxed frontend builds:** `paynode-web` ignores ESLint and TS errors during production builds (`ignoreDuringBuilds: true`).
 
 ## COMMANDS
 
 ```bash
-# Config sync (run after editing paynode-config.json)
-python3 scripts/sync-config.py
+# Config sync (run after editing meta/paynode-config.json)
+python3 meta/scripts/sync-config.py
 
 # JS SDK
 cd packages/sdk-js && npm install && npm run build && npm test

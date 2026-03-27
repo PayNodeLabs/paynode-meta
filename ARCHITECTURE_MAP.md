@@ -104,10 +104,11 @@ sync-config             →       →          →          →       →     �
 
 ## 3. Public Information Tree (SSoT)
 
-```
-paynode/                                    # 🏠 Meta Repo (SSoT)
+```text
+paynode-workspace/                         # 🧩 Local Aggregate Workspace
 │
-├── paynode-config.json                     # ⚙️ Global Config Hub
+├── meta/                                   # 🏠 Meta Repo (SSoT)
+│   ├── paynode-config.json                 # ⚙️ Global Config Hub
 │   ├── protocol.version          = "1.4.0"
 │   ├── protocol.treasury         = "0x598bF6..."
 │   ├── protocol.fee_bps          = 100 (1%)
@@ -125,17 +126,17 @@ paynode/                                    # 🏠 Meta Repo (SSoT)
 │   │   ├── missing_receipt       → Handshake
 │   │   ├── transaction_not_found → Verifier
 │   │   └── internal_error        → All SDKs
-│   └── networks
-│       ├── base (8453)
-│       │   ├── router = "0x4A736..."
-│       │   ├── USDC   = "0x83358..."
-│       │   └── rpcUrls (3)
-│       └── baseSepolia (84532)
-│           ├── router = "0x24cD8..."
-│           ├── USDC   = "0x65c08..."
-│           └── rpcUrls (2)
+│   │   └── networks
+│   │       ├── base (8453)
+│   │       │   ├── router = "0x4A736..."
+│   │       │   ├── USDC   = "0x83358..."
+│   │       │   └── rpcUrls (3)
+│   │       └── baseSepolia (84532)
+│   │           ├── router = "0x24cD8..."
+│   │           ├── USDC   = "0x65c08..."
+│   │           └── rpcUrls (2)
 │
-├── SDK_SPECIFICATION.md                    # 📜 SDK Constitution (v2.2.0)
+├── meta/SDK_SPECIFICATION.md               # 📜 SDK Constitution (v2.2.0)
 │   ├── Core Class Naming (Consistent)
 │   │   ├── PayNodeAgentClient    (JS/Py match)
 │   │   ├── PayNodeVerifier       (JS/Py match)
@@ -155,9 +156,9 @@ paynode/                                    # 🏠 Meta Repo (SSoT)
 │       ├── Idempotency: IdempotencyStore
 │       └── Nonce: Local Locks / Queues
 │
-├── scripts/
+├── meta/scripts/
 │   └── sync-config.py                      # 🔁 Config Propagation Engine
-│       ├── Input: paynode-config.json (SSoT)
+│       ├── Input: meta/paynode-config.json (SSoT)
 │       └── Output:
 │           ├── packages/sdk-js/src/constants.ts
 │           ├── packages/sdk-js/src/errors/index.ts
@@ -166,7 +167,7 @@ paynode/                                    # 🏠 Meta Repo (SSoT)
 │           ├── packages/contracts/script/Config.s.sol
 │           └── apps/paynode-web/app/api/pom/config.ts
 │
-├── public/                                 # 🎨 Brand Assets
+├── meta/public/                            # 🎨 Brand Assets
 │   ├── logo.png                            # "$_" Shield Icon
 │   ├── logo-full.png                       # Full Landscape Logo
 │   └── og-image.png                        # Social Share Meta-Image
@@ -188,9 +189,9 @@ paynode/                                    # 🏠 Meta Repo (SSoT)
 ┌─────────────────────────────────────────────────────────────────┐
 │                     Config Data Flow (Propagator)               │
 │                                                                 │
-│   paynode-config.json (SSoT)                                    │
+│   meta/paynode-config.json (SSoT)                               │
 │         │                                                       │
-│         │  python3 scripts/sync-config.py                       │
+│         │  python3 meta/scripts/sync-config.py                  │
 │         │                                                       │
 │    ┌────┼────────────┬──────────────┬──────────────┐            │
 │    ▼    ▼            ▼              ▼              ▼            │
@@ -200,7 +201,7 @@ paynode/                                    # 🏠 Meta Repo (SSoT)
 │  │     ││+errors   ││ +errors    ││ config.ts  ││ config   │    │
 │  └────┘└──────────┘└────────────┘└────────────┘└──────────┘    │
 │                                                                 │
-│  ⚠️ Must run sync-config.py after modifying paynode-config.json │
+│  ⚠️ Must run sync-config.py after modifying meta/paynode-config.json │
 └─────────────────────────────────────────────────────────────────┘
 
 

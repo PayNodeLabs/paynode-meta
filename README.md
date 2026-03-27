@@ -1,10 +1,10 @@
-# 🌐 PayNode Meta Hub
+# 🌐 PayNode Meta Repo
 
 > **The Sovereign Financial Infrastructure for the Agentic Era.**
 
 PayNode is a **stateless, non-custodial M2M (Machine-to-Machine) payment gateway** built specifically for autonomous AI Agents. It standardizes the **x402 Protocol Extension (v2)**, enabling agents to handle `402 Payment Required` errors silently and securely across the API economy using USDC on Base L2.
 
-This meta-repository is the **Single Source of Truth (SSoT)** for the PayNode ecosystem, housing core SDKs, brand assets, and the global configuration heartbeat.
+This repository is the **Single Source of Truth (SSoT)** for shared PayNode configuration, brand assets, and cross-repository specifications. It is intended to be used alongside the other PayNode repositories inside a local aggregate workspace.
 
 ---
 
@@ -40,29 +40,32 @@ Distributed modularity for high-performance agentic workflows.
 
 ## ⚙️ Global Synchronization Engine
 
-We use a centralized sync engine to propagate configuration changes (Chain IDs, RPCs, Router addresses, Error Codes) from `paynode-config.json` to all modules.
+We use a centralized sync engine to propagate configuration changes (Chain IDs, RPCs, Router addresses, Error Codes) from `paynode-config.json` to the sibling repositories in the local aggregate workspace.
 
-### Expected Mono-repo Structure
+### Expected Aggregate Workspace Structure
 ```text
-paynode/ (Meta Hub Root)
-├── paynode-config.json     # SSoT (Config Hub)
-├── scripts/
-│   └── sync-config.py      # Propagator
+paynode-workspace/
+├── meta/
+│   ├── paynode-config.json     # SSoT (Config Hub)
+│   └── scripts/
+│       └── sync-config.py      # Propagator
 ├── packages/
-│   ├── sdk-js/             # Updates src/constants.ts & src/errors/index.ts
-│   ├── sdk-python/         # Updates constants.py & errors.py
-│   ├── contracts/          # Updates Config.s.sol
-│   └── paynode-ai-skills/  # AI Tools & Logic
+│   ├── sdk-js/                 # Updates src/constants.ts & src/errors/index.ts
+│   ├── sdk-python/             # Updates constants.py & errors.py
+│   ├── contracts/              # Updates script/Config.s.sol
+│   └── paynode-ai-skills/      # AI Tools & Logic
 └── apps/
-    ├── paynode-web/        # Updates config.ts & POM settings
-    └── paynode-docs/       # Markdown sync
+    ├── paynode-web/            # Updates app/api/pom/config.ts
+    └── paynode-docs/           # Documentation site
 ```
 
 ### Running the Sync
-Whenever you modify `paynode-config.json` or contract addresses:
+Whenever you modify `meta/paynode-config.json` or contract addresses, run the sync script from anywhere inside the aggregate workspace:
 ```bash
-python3 scripts/sync-config.py
+python3 meta/scripts/sync-config.py
 ```
+
+The script resolves paths relative to itself, so it does not require the current working directory to be `meta/`.
 
 ---
 
@@ -91,7 +94,7 @@ response = agent.request_gate("https://api.merchant.com/data")
 ---
 
 ## 🎨 Visual Assets
-Located in [`/public`](./public). Includes official logos, OG images, and UI component assets for ecosystem partners.
+Located in `meta/public`. Includes official logos, OG images, and UI component assets for ecosystem partners.
 
 - `logo.png`: The trademark `$_` shield.
 - `logo-full.png`: Landscape branding.
@@ -101,4 +104,3 @@ Located in [`/public`](./public). Includes official logos, OG images, and UI com
 
 _Built for the Sovereign Machine Economy by **[PayNodeLabs](https://github.com/PayNodeLabs)**._
 _Protocol live on **Base Mainnet (8453)**._
-
