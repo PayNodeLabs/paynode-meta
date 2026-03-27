@@ -1,6 +1,6 @@
 {
   "protocol": {
-    "version": "1.1.1",
+    "version": "1.4.0",
     "treasury": "0x598bF63F5449876efafa7b36b77Deb2070621C0E",
     "fee_bps": 100,
     "min_payment_amount": 1000
@@ -12,12 +12,12 @@
     "token_not_accepted": "The provided token address is not in the whitelist.",
     "transaction_failed": "On-chain transaction reverted or failed.",
     "duplicate_transaction": "This transaction hash has already been consumed.",
-    "invalid_receipt": "Invalid receipt",
+    "invalid_receipt": "The provided receipt (TxHash) is malformed or invalid.",
     "internal_error": "An unexpected error occurred.",
     "transaction_not_found": "Transaction not found on-chain.",
     "wrong_contract": "Payment event was not emitted by the official PayNode contract.",
     "order_mismatch": "OrderId in receipt does not match requested ID.",
-    "missing_receipt": "Please pay to PayNode contract and provide 'x-paynode-receipt' header."
+    "missing_receipt": "Please pay to PayNode contract and provide 'PAYMENT-SIGNATURE' header."
   },
   "networks": {
     "base": {
@@ -29,7 +29,7 @@
         "https://1rpc.io/base"
       ],
       "explorer": "https://basescan.org",
-      "router": "0x92e20164FC457a2aC35f53D06268168e6352b200",
+      "router": "0x4A73696ccF76E7381b044cB95127B3784369Ed63",
       "tokens": {
         "USDC": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
       }
@@ -42,9 +42,9 @@
         "https://base-sepolia-rpc.publicnode.com"
       ],
       "explorer": "https://sepolia.basescan.org",
-      "router": "0xB587Bc36aaCf65962eCd6Ba59e2DA76f2f575408",
+      "router": "0x24cD8b68aaC209217ff5a6ef1Bf55a59f2c8Ca6F",
       "tokens": {
-        "USDC": "0xeAC1f2C7099CdaFfB91Aa3b8Ffd653Ef16935798"
+        "USDC": "0x65c088EfBDB0E03185Dbe8e258Ad0cf4Ab7946b0"
       }
     }
   }
