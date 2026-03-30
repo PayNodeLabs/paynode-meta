@@ -1,4 +1,4 @@
-# 🛠️ PayNode SDK Specification & Implementation Standard (v2.2.0)
+# 🛠️ PayNode SDK Specification & Implementation Standard (v2.2.2)
 
 ## 1. Design Philosophy
 *   **Autonomous First**: SDKs must enable AI Agents to autonomously complete the "Request -> Detect 402 -> Pay -> Retry" loop without human intervention.
@@ -42,6 +42,7 @@ The following **PayNode-Specific & Compatibility Headers** are also supported:
 *   `x-paynode-currency`: ISO Currency code (e.g. USDC).
 *   `x-paynode-token-address`: ERC20 token address.
 *   `x-paynode-chain-id`: Network ID (e.g., 8453 for Base).
+*   `X-PayNode-Network`: Network name (`mainnet` or `testnet`).
 
 ---
 
@@ -88,4 +89,16 @@ The `requestGate` method must execute:
 *   **Nonce Safety**: SDKs must implement a local lock or queue to prevent nonce collisions during concurrent requests.
 
 ---
-*PayNode Protocol - Standard RFC v2.2.0*
+---
+
+## 7. Payload Normalization (X402PayloadHelper)
+To support multiple versions of x402 and legacy internal formats, SDKs must include a `X402PayloadHelper.normalize()` utility:
+1.  **Format Detection**: Distinguish between official v2 (JSON with `x402Version: 2`) and internal legacy (base64 JSON).
+2.  **Type Inference**: If `type` is missing, infer `eip3009` if `signature` or `authorization` is present; otherwise `onchain`.
+3.  **Domain Mapping**: 
+    - Official Base USDC (v2) uses `USD Coin` as Domain Name on Testnet.
+    - Custom/Legacy configurations may use `USDC` on Mainnet. SDKs must respect the `extra.name` provided by the server.
+
+---
+
+*PayNode Protocol - Standard RFC v2.2.2*
