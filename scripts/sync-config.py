@@ -59,6 +59,7 @@ def sync_config(check_mode=False):
 
     all_synced = True
     min_amount = config["protocol"]["min_payment_amount"]
+    protocol_version = config["protocol"].get("x402_version", 2)
     base_usdc = config["networks"]["base"]["tokens"]["USDC"]
     sepolia_usdc = config["networks"]["baseSepolia"]["tokens"]["USDC"]
     
@@ -118,6 +119,7 @@ BASE_USDC_ADDRESS = "{base_usdc}"
 BASE_USDC_ADDRESS_SANDBOX = "{sepolia_usdc}"
 BASE_USDC_DECIMALS = 6
 
+PROTOCOL_VERSION = {protocol_version}
 PROTOCOL_TREASURY = "{config["protocol"]["treasury"]}"
 PROTOCOL_FEE_BPS = {config["protocol"]["fee_bps"]}
 MIN_PAYMENT_AMOUNT = {min_amount}
@@ -171,6 +173,7 @@ export const BASE_USDC_ADDRESS_SANDBOX = "{sepolia_usdc}";
 export const PROTOCOL_TREASURY = "{config["protocol"]["treasury"]}";
 export const PROTOCOL_FEE_BPS = {config["protocol"]["fee_bps"]};
 export const MIN_PAYMENT_AMOUNT = BigInt({min_amount});
+export const PROTOCOL_VERSION = {protocol_version};
 export const SDK_VERSION = "{sdk_version}";
 
 export const BASE_RPC_URLS = {json.dumps(base_rpcs)};

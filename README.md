@@ -27,7 +27,9 @@ Distributed modularity for high-performance agentic workflows.
 ## 🏗️ Architectural Core
 
 - **[ARCHITECTURE_MAP.md](./ARCHITECTURE_MAP.md)**: The global feature chain and dependency matrix (v1.4.0).
-- **[SDK_SPECIFICATION.md](./SDK_SPECIFICATION.md)**: Behavioral parity standards for cross-language implementations (v2.2.0).
+- **[SPEC.md](./SPEC.md)**: Canonical PayNode protocol specification shared by all SDKs.
+- **[MULTI_LANGUAGE_BASELINE.md](./MULTI_LANGUAGE_BASELINE.md)**: Baseline cleanup plan for making `sdk-js` the formal cross-language source of truth.
+- **[fixtures/](./fixtures/README.md)**: Machine-readable protocol fixtures and cryptographic test vectors for all SDKs.
 - **[paynode-config.json](./paynode-config.json)**: The **SSoT Heartbeat** containing contract addresses, whitelists, and 12+ standard error codes.
 - **x402 v2 Extension**: Implements the `Handshake` -> `Pre-flight` -> `Signature-First` workflow.
 

@@ -1,0 +1,5 @@
+{
+  "algorithm": "keccak256(utf8(orderId))",
+  "orderId": "merchant-order-123",
+  "hash": "0x0fb0d2ab1b46db4ac9274b067eb731a3954060ac415f4b229b26548179699138"
+}

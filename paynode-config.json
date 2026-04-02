@@ -1,6 +1,6 @@
 {
   "protocol": {
-    "version": "1.4.0",
+    "x402_version": 2,
     "treasury": "0x598bF63F5449876efafa7b36b77Deb2070621C0E",
     "fee_bps": 100,
     "min_payment_amount": 1000

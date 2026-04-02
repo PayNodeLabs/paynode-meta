@@ -1,0 +1,85 @@
+[
+  {
+    "id": "legacy_v2_2_0_string_version",
+    "description": "Legacy paynode-js <= 2.2.x uses string version instead of x402Version number",
+    "input": {
+      "version": "2.3.0",
+      "orderId": "legacy_order_123",
+      "type": "eip3009",
+      "payload": {
+        "signature": "0xabc123...",
+        "authorization": {
+          "from": "0xPayer",
+          "to": "0xMerchant",
+          "value": "100000",
+          "validAfter": "1710000000",
+          "validBefore": "1710003600",
+          "nonce": "0xdeadbeef"
+        }
+      }
+    },
+    "normalized": {
+      "x402Version": 2,
+      "type": "eip3009",
+      "orderId": "legacy_order_123",
+      "payload": {
+        "signature": "0xabc123...",
+        "authorization": {
+          "from": "0xPayer",
+          "to": "0xMerchant",
+          "value": "100000",
+          "validAfter": "1710000000",
+          "validBefore": "1710003600",
+          "nonce": "0xdeadbeef"
+        }
+      },
+      "_paynode": {
+        "sdkVersion": "2.3.0"
+      }
+    }
+  },
+  {
+    "id": "legacy_header_x402_payload",
+    "description": "X-402-Payload is a legacy alias for PAYMENT-SIGNATURE",
+    "headers": {
+      "X-402-Payload": "base64-encoded-payload-here"
+    },
+    "canonical_replacement": "PAYMENT-SIGNATURE",
+    "deprecated_since": "2.3.0"
+  },
+  {
+    "id": "legacy_header_x402_required",
+    "description": "X-402-Required is a legacy alias for PAYMENT-REQUIRED",
+    "headers": {
+      "X-402-Required": "base64-encoded-challenge-here"
+    },
+    "canonical_replacement": "PAYMENT-REQUIRED",
+    "deprecated_since": "2.3.0"
+  },
+  {
+    "id": "legacy_header_x_payment_response",
+    "description": "X-PAYMENT-RESPONSE is emitted alongside PAYMENT-RESPONSE for backward compat",
+    "headers": {
+      "X-PAYMENT-RESPONSE": "base64-encoded-settlement-here"
+    },
+    "canonical_replacement": "PAYMENT-RESPONSE",
+    "deprecated_since": "2.3.0"
+  },
+  {
+    "id": "legacy_snake_case_order_id",
+    "description": "order_id (snake_case) is accepted as fallback for orderId",
+    "input": {
+      "version": "2.2.1",
+      "order_id": "snake_case_order_456",
+      "type": "onchain",
+      "payload": { "txHash": "0xtx..." }
+    },
+    "normalized": {
+      "x402Version": 2,
+      "type": "onchain",
+      "orderId": "snake_case_order_456",
+      "payload": { "txHash": "0xtx..." },
+      "_paynode": { "sdkVersion": "2.2.1" }
+    }
+  }
+]

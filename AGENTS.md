@@ -16,7 +16,8 @@ PayNode is a stateless, non-custodial M2M payment gateway implementing the x402 
 paynode-workspace/
 ├── meta/
 │   ├── paynode-config.json     # SSoT — contract addresses, chain IDs, error codes
-│   ├── SDK_SPECIFICATION.md    # "Engineering Constitution" — protocol spec
+│   ├── SPEC.md                 # Canonical protocol specification
+│   ├── MULTI_LANGUAGE_BASELINE.md # Cross-language baseline plan
 │   ├── scripts/
 │   │   └── sync-config.py      # Propagates config to sibling repositories
 │   └── public/                 # Brand assets (logos, OG images)
@@ -35,7 +36,8 @@ paynode-workspace/
 | Task | Location | Notes |
 |------|----------|-------|
 | Contract addresses, chain IDs | `meta/paynode-config.json` | Edit here, then run sync |
-| SDK behavior spec | `meta/SDK_SPECIFICATION.md` | Defines naming, headers, error codes |
+| Protocol spec | `meta/SPEC.md` | Defines canonical wire protocol and verification rules |
+| Baseline plan | `meta/MULTI_LANGUAGE_BASELINE.md` | Defines cross-language stabilization work |
 | JS SDK source | `packages/sdk-js/src/` | `client.ts` (agent), `middleware/` (merchant) |
 | Python SDK source | `packages/sdk-python/paynode_sdk/` | `client.py` (agent), `middleware.py` (merchant) |
 | Smart contracts | `packages/contracts/src/` | `PayNodeRouter.sol`, `MockUSDC.sol` |
@@ -62,7 +64,7 @@ paynode-workspace/
 
 - **Autonomous First:** SDKs must complete the full 402 loop without human intervention.
 - **Stateless:** No persistent state other than private keys. No order tracking on-chain.
-- **Cross-Language Parity:** JS and Python SDKs must have mirrored APIs, parameter ordering, and error codes. See `SDK_SPECIFICATION.md`.
+- **Cross-Language Parity:** JS and Python SDKs must have mirrored APIs, parameter ordering, and error codes. See `SPEC.md` and `MULTI_LANGUAGE_BASELINE.md`.
 - **Naming:** `PascalCase` for classes (both langs), `camelCase` for JS methods, `snake_case` for Python methods.
 - **Wire Protocol:** Use `X-402-*` headers as per x402 v2/v2.2.0 protocol. Legacy `x-paynode-*` headers are deprecated.
 - **USDC Decimals:** Always 6. Use `ethers.parseUnits(amount, 6)` in JS.

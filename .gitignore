@@ -4,12 +4,15 @@
 # Whitelist global assets & configs only
 !public/
 !public/**
+!fixtures/
+!fixtures/**
 !scripts/
 !scripts/**
 !CHANGELOG.md
 !paynode-config.json
 !README.md
-!SDK_SPECIFICATION.md
+!SPEC.md
+!MULTI_LANGUAGE_BASELINE.md
 !.gitignore
 !ARCHITECTURE_MAP.md
 !AGENTS.md
