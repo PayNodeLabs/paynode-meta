@@ -1,0 +1,103 @@
+{
+  "description": "Golden vectors for direct x402 payment verification",
+  "cases": [
+    {
+      "id": "valid_eip3009",
+      "kind": "eip3009",
+      "expectedResult": "pass",
+      "config": {
+        "merchantAddress": "0x1111111111111111111111111111111111111111",
+        "tokenAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "amount": "100000",
+        "chainId": 8453
+      },
+      "input": {
+        "payload": {
+          "signature": "0x1debdd4c92475588e472eacc3c96f36b8fbe8fbd70af65215bbba14b4f0bf4ab168dddcf4dea92efd2d90bf5bb83f88e90c5d83cac53782b22e02c2f4c2042701b",
+          "authorization": {
+            "from": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+            "to": "0x1111111111111111111111111111111111111111",
+            "value": "100000",
+            "validAfter": "1710000000",
+            "validBefore": "1710003600",
+            "nonce": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        },
+        "timestamp": "1710001800"
+      },
+      "expected": {
+        "domainSeparator": "0xe824be45ff6ee69e5f9486cef877c2a7f3c987b25b91038a372bb1c70646a3d7",
+        "structHash": "0x7a8eb808ead42a3536341295982869f33ae65eaf96f6424e82e4638a9d16a57c",
+        "signingHash": "0xdc39050d27ec2951e70e9a5d4872c0199109067b848c0db726359f4937748ca0",
+        "expectedSigner": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44"
+      }
+    },
+    {
+      "id": "amount_too_low",
+      "kind": "eip3009",
+      "expectedResult": "fail",
+      "expectedErrorCode": "amount_too_low",
+      "config": {
+        "merchantAddress": "0x1111111111111111111111111111111111111111",
+        "tokenAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "amount": "100000",
+        "chainId": 8453
+      },
+      "input": {
+        "payload": {
+          "signature": "0x88d246b92a021f0cfc60195b7e824e629c97ec7fc3438e72e4c9a2b9d672724945f1a4f5ea1e1117ad3362638396323bcdeec05000776cc3a07d73dc77fc28671c",
+          "authorization": {
+            "from": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+            "to": "0x1111111111111111111111111111111111111111",
+            "value": "50000",
+            "validAfter": "1710000000",
+            "validBefore": "1710003600",
+            "nonce": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          }
+        },
+        "timestamp": "1710001800"
+      },
+      "expected": {
+        "domainSeparator": "0xe824be45ff6ee69e5f9486cef877c2a7f3c987b25b91038a372bb1c70646a3d7",
+        "structHash": "0x306fc6e246736599b53f65e236683896323bcdeec05000776cc3a07d73dc77fc",
+        "signingHash": "0x3ad5908148c697eb88c8c28507d95a1f5a08200b0328b318691e832ff743bd8e",
+        "expectedSigner": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+        "constraint": "input.payload.authorization.value < config.amount"
+      }
+    },
+    {
+      "id": "wrong_token",
+      "kind": "eip3009",
+      "expectedResult": "fail",
+      "expectedErrorCode": "token_not_accepted",
+      "config": {
+        "merchantAddress": "0x1111111111111111111111111111111111111111",
+        "tokenAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+        "amount": "100000",
+        "chainId": 8453
+      },
+      "input": {
+        "payload": {
+          "signature": "0x4982bbadc7594ea369c9d3664ad3a6ced81316ef2f929f65e5312efa2db486c05fde7ae3d66cf2306c766d0623bf0477b9ca1796ca663d537e997ee988d447bd1b",
+          "authorization": {
+            "from": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+            "to": "0x1111111111111111111111111111111111111111",
+            "value": "100000",
+            "validAfter": "1710000000",
+            "validBefore": "1710003600",
+            "nonce": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+          }
+        },
+        "tokenAddress": "0xdeadbeef00000000000000000000000000000000",
+        "timestamp": "1710001800"
+      },
+      "expected": {
+        "domainSeparator": "0xe824be45ff6ee69e5f9486cef877c2a7f3c987b25b91038a372bb1c70646a3d7",
+        "structHash": "0xe9f758872b1f7669dc048168147c5b87422fd2c6604e1969de884f99e3925549",
+        "signingHash": "0x1979737bc90196c28f9e3e9862b5a2d95767676c8772c217647bfbc695670b99",
+        "expectedSigner": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+        "constraint": "input.tokenAddress != config.tokenAddress"
+      }
+    }
+  ]
+}

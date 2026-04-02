@@ -1,0 +1,49 @@
+{
+  "privateKeyLabel": "test-vector-1",
+  "privateKey": "0x59c6995e998f97a5a0044966f0945382d7f5e3f5bcf1e35a2c22fcf04e3d6f2b",
+  "signer": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+  "domain": {
+    "name": "USDC",
+    "version": "2",
+    "chainId": 8453,
+    "verifyingContract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+  },
+  "types": {
+    "TransferWithAuthorization": [
+      {
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "name": "value",
+        "type": "uint256"
+      },
+      {
+        "name": "validAfter",
+        "type": "uint256"
+      },
+      {
+        "name": "validBefore",
+        "type": "uint256"
+      },
+      {
+        "name": "nonce",
+        "type": "bytes32"
+      }
+    ]
+  },
+  "message": {
+    "from": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+    "to": "0x1111111111111111111111111111111111111111",
+    "value": "100000",
+    "validAfter": "1710000000",
+    "validBefore": "1710003600",
+    "nonce": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "signature": "0x1debdd4c92475588e472eacc3c96f36b8fbe8fbd70af65215bbba14b4f0bf4ab168dddcf4dea92efd2d90bf5bb83f88e90c5d83cac53782b22e02c2f4c2042701b",
+  "recoveredSigner": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44"
+}

@@ -1,0 +1,8 @@
+{
+  "algorithm": "HMAC-SHA256",
+  "sharedSecret": "paynode-market-secret",
+  "requestId": "mk_req_001",
+  "timestamp": "1710000000000",
+  "input": "mk_req_001:1710000000000",
+  "signature": "9a17637158d97036cf72054dcfd94de125fb02526a4ab815403618421064b146"
+}

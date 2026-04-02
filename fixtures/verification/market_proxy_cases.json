@@ -1,0 +1,47 @@
+{
+  "description": "Golden vectors for PayNode Market Proxy verification",
+  "cases": [
+    {
+      "id": "valid_proxy_signature",
+      "expectedResult": "pass",
+      "config": {
+        "sharedSecret": "paynode-market-secret"
+      },
+      "input": {
+        "signature": "9a17637158d97036cf72054dcfd94de125fb02526a4ab815403618421064b146",
+        "requestId": "mk_req_001",
+        "timestamp": "1710000000000",
+        "now": 1710000000000
+      }
+    },
+    {
+      "id": "invalid_timestamp_drift",
+      "expectedResult": "fail",
+      "expectedErrorCode": "unauthorized",
+      "config": {
+        "sharedSecret": "paynode-market-secret"
+      },
+      "input": {
+        "signature": "011613a7497833d8b4a5b32965a90fc20cf45d89eea6b35841a89f06b297eb50",
+        "requestId": "mk_req_001",
+        "timestamp": "1710000000000",
+        "now": 1710000600000
+      },
+      "note": "1710000600000 is 10 minutes ahead of 1710000000000 (exceeds 5 min drift)"
+    },
+    {
+      "id": "invalid_signature",
+      "expectedResult": "fail",
+      "expectedErrorCode": "unauthorized",
+      "config": {
+        "sharedSecret": "paynode-market-secret"
+      },
+      "input": {
+        "signature": "wrong_signature_value",
+        "requestId": "mk_req_001",
+        "timestamp": "1710000000000",
+        "now": 1710000000000
+      }
+    }
+  ]
+}

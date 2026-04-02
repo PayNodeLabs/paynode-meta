@@ -136,7 +136,8 @@ paynode-workspace/                         # 🧩 Local Aggregate Workspace
 │   │           ├── USDC   = "0x65c08..."
 │   │           └── rpcUrls (2)
 │
-├── meta/SDK_SPECIFICATION.md               # 📜 SDK Constitution (v2.2.0)
+├── meta/SPEC.md                            # 📜 Canonical protocol specification
+├── meta/MULTI_LANGUAGE_BASELINE.md         # 🧭 Cross-language baseline plan
 │   ├── Core Class Naming (Consistent)
 │   │   ├── PayNodeAgentClient    (JS/Py match)
 │   │   ├── PayNodeVerifier       (JS/Py match)

@@ -1,0 +1,44 @@
+{
+  "privateKeyLabel": "test-vector-1",
+  "privateKey": "0x59c6995e998f97a5a0044966f0945382d7f5e3f5bcf1e35a2c22fcf04e3d6f2b",
+  "signer": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+  "domain": {
+    "name": "USD Coin",
+    "version": "2",
+    "chainId": 8453,
+    "verifyingContract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+  },
+  "types": {
+    "Permit": [
+      {
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "name": "value",
+        "type": "uint256"
+      },
+      {
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "name": "deadline",
+        "type": "uint256"
+      }
+    ]
+  },
+  "message": {
+    "owner": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+    "spender": "0x4A73696ccF76E7381b044cB95127B3784369Ed63",
+    "value": "100000",
+    "nonce": "7",
+    "deadline": "1710003600"
+  },
+  "signature": "0x7814343dbda736426c5bc24a1b0b03d893fd9049089896533604b6c8a4ae0d494fdc1e848a13a6926745b29d4d4fcc8284293db9c12fd384c5b6be13659790621b",
+  "recoveredSigner": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44"
+}

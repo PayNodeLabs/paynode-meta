@@ -1,0 +1,34 @@
+{
+  "x402Version": 2,
+  "resource": {
+    "url": "https://api.merchant.com/v1/tools"
+  },
+  "accepted": {
+    "scheme": "exact",
+    "type": "eip3009",
+    "network": "eip155:8453",
+    "amount": "100000",
+    "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    "payTo": "0x1111111111111111111111111111111111111111",
+    "maxTimeoutSeconds": 3600,
+    "extra": {
+      "name": "USDC",
+      "version": "2"
+    }
+  },
+  "payload": {
+    "signature": "0x1debdd4c92475588e472eacc3c96f36b8fbe8fbd70af65215bbba14b4f0bf4ab168dddcf4dea92efd2d90bf5bb83f88e90c5d83cac53782b22e02c2f4c2042701b",
+    "authorization": {
+      "from": "0x4834d65081F1500F1C7d0207DcFA91c1CF8AaA44",
+      "to": "0x1111111111111111111111111111111111111111",
+      "value": "100000",
+      "validAfter": "1710000000",
+      "validBefore": "1710003600",
+      "nonce": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  },
+  "_paynode": {
+    "type": "eip3009",
+    "orderId": "merchant-order-123"
+  }
+}

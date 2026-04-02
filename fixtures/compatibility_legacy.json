@@ -1,0 +1,101 @@
+{
+  "description": "Legacy compatibility fixtures for migration testing. These fixtures MUST NOT define the main protocol — they exist only to protect legacy migrations from paynode-js <= 2.2.x.",
+  "legacy_headers": [
+    {
+      "id": "header_x402_required",
+      "description": "Legacy alias for PAYMENT-REQUIRED (challenge response header)",
+      "deprecated_since": "2.3.0",
+      "canonical_replacement": "PAYMENT-REQUIRED",
+      "sample_request": { "response_headers": { "X-402-Required": "eyJ4NDAyVmVyc2lvbiI6Mn0=" } },
+      "sample_canonical": { "response_headers": { "PAYMENT-REQUIRED": "eyJ4NDAyVmVyc2lvbiI6Mn0=" } }
+    },
+    {
+      "id": "header_x402_payload",
+      "description": "Legacy alias for PAYMENT-SIGNATURE (payment proof header)",
+      "deprecated_since": "2.3.0",
+      "canonical_replacement": "PAYMENT-SIGNATURE",
+      "sample_request": { "request_headers": { "X-402-Payload": "eyJ4NDAyVmVyc2lvbiI6Mn0=" } },
+      "sample_canonical": { "request_headers": { "PAYMENT-SIGNATURE": "eyJ4NDAyVmVyc2lvbiI6Mn0=" } }
+    },
+    {
+      "id": "header_x_payment_response",
+      "description": "Legacy alias for PAYMENT-RESPONSE (settlement confirmation header)",
+      "deprecated_since": "2.3.0",
+      "canonical_replacement": "PAYMENT-RESPONSE",
+      "sample_response": { "response_headers": { "X-PAYMENT-RESPONSE": "eyJzdWNjZXNzIjp0cnVlfQ==" } },
+      "sample_canonical": { "response_headers": { "PAYMENT-RESPONSE": "eyJzdWNjZXNzIjp0cnVlfQ==" } }
+    }
+  ],
+  "legacy_body_fields": [
+    {
+      "id": "body_orderId_in_accepts",
+      "description": "orderId in PaymentRequirements (402 challenge body accepts[]) is a DEPRECATED field",
+      "deprecated_since": "2.3.0",
+      "canonical_replacement": "X-402-Order-Id header",
+      "legacy_sample": {
+        "x402Version": 2,
+        "accepts": [{
+          "scheme": "exact",
+          "type": "eip3009",
+          "network": "eip155:8453",
+          "amount": "100000",
+          "orderId": "legacy-order-42",
+          "maxTimeoutSeconds": 3600,
+          "extra": { "name": "USDC", "version": "2" }
+        }]
+      },
+      "canonical_sample": {
+        "x402Version": 2,
+        "accepts": [{
+          "scheme": "exact",
+          "type": "eip3009",
+          "network": "eip155:8453",
+          "amount": "100000",
+          "maxTimeoutSeconds": 3600,
+          "extra": { "name": "USDC", "version": "2" }
+        }]
+      }
+    }
+  ],
+  "legacy_payload_wrappers": [
+    {
+      "id": "wrapper_paynode_v2dotx",
+      "description": "Legacy PayNode internal payload uses version as string instead of x402Version number",
+      "deprecated_since": "2.3.0",
+      "legacy_sample": {
+        "version": "2.2.1",
+        "orderId": "order-123",
+        "type": "eip3009",
+        "payload": {
+          "signature": "0x0123...",
+          "authorization": {
+            "from": "0xPayer",
+            "to": "0xMerchantWallet",
+            "value": "100000",
+            "validAfter": "1710000000",
+            "validBefore": "1710003600",
+            "nonce": "0xabcd"
+          }
+        }
+      },
+      "normalized_form": {
+        "x402Version": 2,
+        "type": "eip3009",
+        "orderId": "order-123",
+        "payload": {
+          "signature": "0x0123...",
+          "authorization": {
+            "from": "0xPayer",
+            "to": "0xMerchantWallet",
+            "value": "100000",
+            "validAfter": "1710000000",
+            "validBefore": "1710003600",
+            "nonce": "0xabcd"
+          }
+        },
+        "_paynode": { "sdkVersion": "2.2.1" }
+      }
+    }
+  ],
+  "deprecated_since": "All legacy behavior existed in paynode-js <= 2.2.x and is accepted as backward compatibility in 2.3.0 with explicit deprecation warnings"
+}
